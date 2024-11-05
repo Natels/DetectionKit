@@ -2,10 +2,7 @@
 // https://docs.swift.org/swift-book
 
 import Foundation
-
-#if canImport(UIKit)
-    import UIKit
-#endif
+import UIKit
 
 let jailbreakFiles = [
     "/Applications/Cydia.app",
@@ -98,13 +95,11 @@ public struct Detector {
     public static func detectJailbreakURLs() -> [String] {
         var urls = [String]()
 
-        #if canImport(UIKit)
-            for url in jailbreakURLs {
-                if UIApplication.shared.canOpenURL(URL(string: url)!) {
-                    urls.append(url)
-                }
+        for url in jailbreakURLs {
+            if UIApplication.shared.canOpenURL(URL(string: url)!) {
+                urls.append(url)
             }
-        #endif
+        }
 
         return urls
     }
