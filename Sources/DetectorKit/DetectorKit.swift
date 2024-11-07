@@ -4,7 +4,7 @@
 import Foundation
 import UIKit
 
-let jailbreakFiles = [
+let notableFiles = [
     "/Applications/Cydia.app",
     "/Applications/Sileo.app",
     "/var/binpack",
@@ -19,7 +19,7 @@ let jailbreakFiles = [
     "/usr/lib/TweakInject",
 ]
 
-let jailbreakSymbols = [
+let notableSymbols = [
     "MSHookFunction",
     "MSHookMessageEx",
     "MSFindSymbol",
@@ -29,7 +29,7 @@ let jailbreakSymbols = [
     "LHHookFunctions",
 ]
 
-let jailbreakDylds = [
+let notableDylds = [
     "MobileSubstrate",
     "TweakInject",
     "libhooker",
@@ -46,7 +46,7 @@ let jailbreakDylds = [
     "Electra",
 ]
 
-let jailbreakURLs = [
+let notableUrls = [
     "cydia://",
     "sileo://",
     "zbra://",
@@ -55,10 +55,10 @@ let jailbreakURLs = [
 ]
 
 public struct Detector {
-    public static func detectJailbreakFiles() -> [String] {
+    public static func detectNotableFiles() -> [String] {
         var files = [String]()
 
-        for file in jailbreakFiles {
+        for file in notableFiles {
             if FileManager.default.fileExists(atPath: file) {
                 files.append(file)
             }
@@ -67,10 +67,10 @@ public struct Detector {
         return files
     }
 
-    public static func detectJailbreakSymbols() -> [String] {
+    public static func detectNotableSymbols() -> [String] {
         var symbols = [String]()
 
-        for symbol in jailbreakSymbols {
+        for symbol in notableSymbols {
             if dlsym(dlopen(nil, RTLD_NOW), symbol) != nil {
                 symbols.append(symbol)
             }
@@ -79,10 +79,10 @@ public struct Detector {
         return symbols
     }
 
-    public static func detectJailbreakDylds() -> [String] {
+    public static func detectNotableDylds() -> [String] {
         var dylds = [String]()
 
-        for dyld in jailbreakDylds {
+        for dyld in notableDylds {
             if dlopen(dyld, RTLD_NOW) != nil {
                 dylds.append(dyld)
             }
@@ -92,10 +92,10 @@ public struct Detector {
     }
 
     @MainActor
-    public static func detectJailbreakURLs() -> [String] {
+    public static func detectNotableUrls() -> [String] {
         var urls = [String]()
 
-        for url in jailbreakURLs {
+        for url in notableUrls {
             if UIApplication.shared.canOpenURL(URL(string: url)!) {
                 urls.append(url)
             }
@@ -105,11 +105,11 @@ public struct Detector {
     }
 
     @MainActor
-    public static func isJailbroken() -> Bool {
-        let files = detectJailbreakFiles()
-        let symbols = detectJailbreakSymbols()
-        let dylds = detectJailbreakDylds()
-        let urls = detectJailbreakURLs()
+    public static func notableCharacteristicsDetected() -> Bool {
+        let files = detectNotableFiles()
+        let symbols = detectNotableSymbols()
+        let dylds = detectNotableDylds()
+        let urls = detectNotableUrls()
 
         return !files.isEmpty || !symbols.isEmpty || !dylds.isEmpty || !urls.isEmpty
     }
