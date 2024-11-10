@@ -18,6 +18,37 @@ public struct Detector {
         "/usr/lib/libsubstitute.dylib",
         "/usr/lib/substrate",
         "/usr/lib/TweakInject",
+
+        // Additions from your Detector list
+        "/Applications/RockApp.app",
+        "/Applications/Icy.app",
+        "/usr/sbin/sshd",
+        "/usr/bin/sshd",
+        "/usr/libexec/sftp-server",
+        "/Applications/WinterBoard.app",
+        "/Applications/SBSettings.app",
+        "/Applications/MxTube.app",
+        "/Applications/IntelliScreen.app",
+        "/Library/MobileSubstrate/DynamicLibraries/Veency.plist",
+        "/Applications/FakeCarrier.app",
+        "/Library/MobileSubstrate/DynamicLibraries/LiveClock.plist",
+        "/private/var/lib/apt",
+        "/private/var/stash",
+        "/private/var/mobile/Library/SBSettings/Themes",
+        "/System/Library/LaunchDaemons/com.ikey.bbot.plist",
+        "/System/Library/LaunchDaemons/com.saurik.Cydia.Startup.plist",
+        "/private/var/tmp/cydia.log",
+        "/private/var/lib/cydia",
+
+        // Additional jailbreak related paths
+        "/Applications/blackra1n.app",
+        "/Library/MobileSubstrate/MobileSubstrate.dylib",
+        "/var/cache/apt/",
+        "/var/lib/apt/",
+        "/var/log/syslog",
+        "/etc/apt",
+        "/usr/lib/libcycript.dylib",
+        "/System/Library/LaunchDaemons/com.saurik.substrated.plist"
     ]
 
     static let notableSymbols = [
@@ -28,6 +59,13 @@ public struct Detector {
         "ZzBuildHook",
         "DobbyHook",
         "LHHookFunctions",
+
+        // Additional symbols used in jailbreaking tools
+        "MSHookMemory",
+        "MSHookIvar",
+        "ZzReplace",
+        "cycriptNotify",
+        "_ZL8sub_Initialize"
     ]
 
     static let notableDylds = [
@@ -43,8 +81,20 @@ public struct Detector {
         "FlyJB",
         "substitute",
         "Cephei",
-        "rocketbootstrap",
         "Electra",
+        "rocketbootstrap",
+
+        // Additional libraries for jailbreak detection
+        "libcycript",
+        "SubstrateDynLoader",
+        "yalu",
+        "mach_portal",
+        "topanga",
+        "electra",
+        "unc0ver",
+        "checkra1n",
+        "odyssey",
+        "libjailbreak"
     ]
 
     static let notableUrls = [
@@ -53,6 +103,11 @@ public struct Detector {
         "zbra://",
         "filza://",
         "activator://",
+
+        // Additional jailbreak related URLs
+        "undecimus://",
+        "odyssey://",
+        "checkra1n://"
     ]
 
     public static func detectFiles(matching names: [String]) -> [String] {
