@@ -2,10 +2,9 @@
 // https://docs.swift.org/swift-book
 
 import Foundation
-import UIKit
 
 public struct Detector {
-    static let notableFiles = [
+    public static let notableFiles = [
         "/Applications/Cydia.app",
         "/Applications/Sileo.app",
         "/var/binpack",
@@ -18,8 +17,6 @@ public struct Detector {
         "/usr/lib/libsubstitute.dylib",
         "/usr/lib/substrate",
         "/usr/lib/TweakInject",
-
-        // Additions from your Detector list
         "/Applications/RockApp.app",
         "/Applications/Icy.app",
         "/usr/sbin/sshd",
@@ -39,8 +36,6 @@ public struct Detector {
         "/System/Library/LaunchDaemons/com.saurik.Cydia.Startup.plist",
         "/private/var/tmp/cydia.log",
         "/private/var/lib/cydia",
-
-        // Additional jailbreak related paths
         "/Applications/blackra1n.app",
         "/Library/MobileSubstrate/MobileSubstrate.dylib",
         "/var/cache/apt/",
@@ -48,10 +43,10 @@ public struct Detector {
         "/var/log/syslog",
         "/etc/apt",
         "/usr/lib/libcycript.dylib",
-        "/System/Library/LaunchDaemons/com.saurik.substrated.plist"
+        "/System/Library/LaunchDaemons/com.saurik.substrated.plist",
     ]
 
-    static let notableSymbols = [
+    public static let notableSymbols = [
         "MSHookFunction",
         "MSHookMessageEx",
         "MSFindSymbol",
@@ -59,16 +54,14 @@ public struct Detector {
         "ZzBuildHook",
         "DobbyHook",
         "LHHookFunctions",
-
-        // Additional symbols used in jailbreaking tools
         "MSHookMemory",
         "MSHookIvar",
         "ZzReplace",
         "cycriptNotify",
-        "_ZL8sub_Initialize"
+        "_ZL8sub_Initialize",
     ]
 
-    static let notableDylds = [
+    public static let notableDylds = [
         "MobileSubstrate",
         "TweakInject",
         "libhooker",
@@ -83,8 +76,6 @@ public struct Detector {
         "Cephei",
         "Electra",
         "rocketbootstrap",
-
-        // Additional libraries for jailbreak detection
         "libcycript",
         "SubstrateDynLoader",
         "yalu",
@@ -94,20 +85,7 @@ public struct Detector {
         "unc0ver",
         "checkra1n",
         "odyssey",
-        "libjailbreak"
-    ]
-
-    static let notableUrls = [
-        "cydia://",
-        "sileo://",
-        "zbra://",
-        "filza://",
-        "activator://",
-
-        // Additional jailbreak related URLs
-        "undecimus://",
-        "odyssey://",
-        "checkra1n://"
+        "libjailbreak",
     ]
 
     public static func detectFiles(matching names: [String]) -> [String] {
@@ -147,25 +125,11 @@ public struct Detector {
     }
 
     @MainActor
-    public static func detectUrlHandlers(matching urls: [String]) -> [String] {
-        var urls = [String]()
-
-        for url in urls {
-            if UIApplication.shared.canOpenURL(URL(string: url)!) {
-                urls.append(url)
-            }
-        }
-
-        return urls
-    }
-
-    @MainActor
     public static func notableCharacteristicsDetected() -> Bool {
         let files = detectFiles(matching: notableFiles)
         let symbols = detectSymbols(matching: notableSymbols)
         let dylds = detectDylds(matching: notableDylds)
-        let urls = detectUrlHandlers(matching: notableUrls)
 
-        return !files.isEmpty || !symbols.isEmpty || !dylds.isEmpty || !urls.isEmpty
+        return !files.isEmpty || !symbols.isEmpty || !dylds.isEmpty
     }
 }
