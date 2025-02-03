@@ -2,6 +2,10 @@ import Testing
 
 @testable import DetectorKit
 
-@Test func testDetector() async throws {
-    #expect(await Detector.notableCharacteristicsDetected() == true)
+@Suite("Detect environment tests")
+struct DetectorKitTests {
+    @Test("can detect notable characteristics")
+    func testDetector() async throws {
+        #expect(Detector.notableCharacteristicsDetected() == true)
+    }
 }

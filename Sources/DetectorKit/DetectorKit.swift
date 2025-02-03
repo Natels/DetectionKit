@@ -124,7 +124,6 @@ public struct Detector {
         return dylds
     }
 
-    @MainActor
     public static func notableCharacteristicsDetected() -> Bool {
         let files = detectFiles(matching: notableFiles)
         let symbols = detectSymbols(matching: notableSymbols)
