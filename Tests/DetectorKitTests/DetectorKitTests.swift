@@ -6,6 +6,6 @@ import Testing
 struct DetectorKitTests {
     @Test("can detect notable characteristics")
     func testDetector() async throws {
-        #expect(Detector.notableCharacteristicsDetected() == true)
+        #expect(Detector.scan().detected == true)
     }
 }

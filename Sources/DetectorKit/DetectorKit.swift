@@ -3,6 +3,16 @@
 
 import Foundation
 
+public struct NotableCharacteristics {
+    let files: [String]
+    let symbols: [String]
+    let dylds: [String]
+
+    var detected: Bool {
+        !files.isEmpty || !symbols.isEmpty || !dylds.isEmpty
+    }
+}
+
 public struct Detector {
     public static let notableFiles = [
         "/Applications/Cydia.app",
@@ -124,11 +134,11 @@ public struct Detector {
         return dylds
     }
 
-    public static func notableCharacteristicsDetected() -> Bool {
-        let files = detectFiles(matching: notableFiles)
-        let symbols = detectSymbols(matching: notableSymbols)
-        let dylds = detectDylds(matching: notableDylds)
-
-        return !files.isEmpty || !symbols.isEmpty || !dylds.isEmpty
+    public static func scan() -> NotableCharacteristics {
+        return NotableCharacteristics(
+            files: detectFiles(matching: notableFiles),
+            symbols: detectSymbols(matching: notableSymbols),
+            dylds: detectDylds(matching: notableDylds)
+        )
     }
 }
