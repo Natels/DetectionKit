@@ -3,16 +3,16 @@
 import PackageDescription
 
 let package = Package(
-    name: "DetectorKit",
+    name: "DetectionKit",
     platforms: [.iOS(.v12), .macOS(.v11)],
     products: [
-        .library(name: "DetectorKit", targets: ["DetectorKit"])
+        .library(name: "DetectionKit", targets: ["DetectionKit"])
     ],
     targets: [
-        .target(name: "DetectorKit"),
+        .target(name: "DetectionKit"),
         .testTarget(
             name: "DetectorKitTests",
-            dependencies: ["DetectorKit"]
+            dependencies: ["DetectionKit"]
         ),
     ]
 )
