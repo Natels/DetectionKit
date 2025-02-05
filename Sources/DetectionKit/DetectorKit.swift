@@ -4,9 +4,9 @@
 import Foundation
 
 public struct NotableCharacteristics {
-    let files: [String]
-    let symbols: [String]
-    let dylds: [String]
+    public let files: [String]
+    public let symbols: [String]
+    public let dylds: [String]
 
     var detected: Bool {
         !files.isEmpty || !symbols.isEmpty || !dylds.isEmpty
