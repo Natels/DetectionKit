@@ -1,31 +1,32 @@
 import Foundation
+
 #if canImport(UIKit)
-import UIKit
+    import UIKit
 #endif
 
 @MainActor
-struct Device {
-    static let osVersion: String = ProcessInfo.processInfo.operatingSystemVersionString
-    static var osName: String {
+public struct Device {
+    public static let osVersion: String = ProcessInfo.processInfo.operatingSystemVersionString
+    public static var osName: String {
         #if os(macOS)
-        return "macOS"
+            return "macOS"
         #elseif os(watchOS)
-        return "watchOS"
+            return "watchOS"
         #elseif canImport(UIKit)
-        return UIDevice.current.systemName
+            return UIDevice.current.systemName
         #else
-        return "-"
+            return "-"
         #endif
     }
-    static var deviceModel: String {
+    public static var deviceModel: String {
         #if os(macOS)
-        return sysctlString(name: "hw.model") ?? "-"
+            return sysctlString(name: "hw.model") ?? "-"
         #elseif os(watchOS)
-        return sysctlString(name: "hw.model") ?? "-"
+            return sysctlString(name: "hw.model") ?? "-"
         #elseif canImport(UIKit)
-        return UIDevice.current.model
+            return UIDevice.current.model
         #else
-        return "-"
+            return "-"
         #endif
     }
 }
@@ -56,5 +57,4 @@ extension Device {
         }
         return nil
     }
-
 }
