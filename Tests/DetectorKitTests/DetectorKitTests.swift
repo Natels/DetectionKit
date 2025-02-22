@@ -1,6 +1,6 @@
 import Testing
 
-@testable import DetectorKit
+@testable import DetectionKit
 
 @Suite("Detect environment tests")
 struct DetectorKitTests {

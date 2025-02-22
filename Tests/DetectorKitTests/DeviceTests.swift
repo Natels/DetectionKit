@@ -1,6 +1,6 @@
 import Testing
 
-@testable import DetectorKit
+@testable import DetectionKit
 
 @Suite("Device info tests")
 struct DeviceTests {

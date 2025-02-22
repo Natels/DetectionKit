@@ -2,11 +2,11 @@
 test:
 	@echo "Running tests..."
 	@xcodebuild test \
-		-scheme DetectorKit \
+		-scheme DetectionKit \
 		-destination "platform=iOS Simulator,name=iPhone 16 Pro,OS=latest"
 
 	@xcodebuild test \
-		-scheme DetectorKit \
+		-scheme DetectionKit \
 		-destination "platform=macOS"
 
 @PHONY: format
